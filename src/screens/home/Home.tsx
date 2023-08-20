@@ -40,6 +40,9 @@ const MEALS_DATA = [
       { time: "17:00", description: "Pão com café", hasEscapedDiet: false },
       { time: "14:00", description: "Lasagna e Arroz", hasEscapedDiet: false },
       { time: "08:00", description: "Café", hasEscapedDiet: false },
+      { time: "08:00", description: "Café", hasEscapedDiet: false },
+      { time: "08:00", description: "Café", hasEscapedDiet: false },
+      { time: "08:00", description: "Café", hasEscapedDiet: false },
     ],
   },
   {
@@ -48,6 +51,9 @@ const MEALS_DATA = [
       { time: "20:00", description: "Lasagna", hasEscapedDiet: true },
       { time: "17:00", description: "Pão com café", hasEscapedDiet: false },
       { time: "14:00", description: "Lasagna e Arroz", hasEscapedDiet: false },
+      { time: "08:00", description: "Café", hasEscapedDiet: false },
+      { time: "08:00", description: "Café", hasEscapedDiet: false },
+      { time: "08:00", description: "Café", hasEscapedDiet: false },
       { time: "08:00", description: "Café", hasEscapedDiet: false },
     ],
   },
@@ -66,7 +72,7 @@ export function Home(props: Home) {
         <Avatar source={avatarImage} />
       </Header>
 
-      <Percent>
+      <Percent variant="danger">
         <PercentTitle>90,86%</PercentTitle>
         <PercentDescription>das refeições dentro da dieta</PercentDescription>
 

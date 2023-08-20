@@ -24,7 +24,7 @@ export function MealsListItem({
         <Time>{time}</Time>
       </TimeContainer>
       <Description>{description}</Description>
-      <Status hasEscapedDiet={hasEscapedDiet} />
+      <Status variant={hasEscapedDiet ? "danger" : "success"} />
     </Container>
   );
 }

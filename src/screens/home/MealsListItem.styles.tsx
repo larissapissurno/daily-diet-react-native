@@ -1,3 +1,4 @@
+import { VariantProps } from "src/@types/styled";
 import styled, { css } from "styled-components/native";
 
 export const Container = styled.View`
@@ -41,15 +42,12 @@ export const Description = styled.Text`
   `}
 `;
 
-type StatusProps = {
-  hasEscapedDiet: boolean;
-};
-export const Status = styled.View<StatusProps>`
-  ${({ theme, hasEscapedDiet }) => css`
+export const Status = styled.View<VariantProps>`
+  ${({ theme, variant }) => css`
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background-color: ${hasEscapedDiet
+    background-color: ${variant === "danger"
       ? theme.COLORS.RED_MID
       : theme.COLORS.GREEN_MID};
   `}

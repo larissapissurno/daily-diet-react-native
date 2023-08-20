@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components/native";
 import { ArrowUpRight, Plus } from "phosphor-react-native";
+import { VariantProps } from "src/@types/styled";
 
 export const Container = styled.View`
   margin-top: 50px; /**TODO: Remove this when safe area view is implemented */
@@ -15,7 +16,7 @@ export const Header = styled.View`
   justify-content: space-between;
 `;
 
-export const Percent = styled.TouchableOpacity`
+export const Percent = styled.TouchableOpacity<VariantProps>`
   align-items: center;
   justify-content: center;
 
@@ -24,7 +25,8 @@ export const Percent = styled.TouchableOpacity`
   width: 100%;
   margin-top: 32px;
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
+  background-color: ${({ theme, variant }) =>
+    variant === "success" ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
   padding: 12px;
 `;
 
