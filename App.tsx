@@ -8,6 +8,7 @@ import {
   NunitoSans_700Bold,
 } from "@expo-google-fonts/nunito-sans";
 import { Loading } from "@components/loading/Loading";
+import { Home } from "@screens/home/Home";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ NunitoSans_400Regular, NunitoSans_700Bold });
@@ -16,24 +17,7 @@ export default function App() {
     <ThemeProvider theme={defaultTheme}>
       <StatusBar barStyle="default" backgroundColor="transparent" translucent />
 
-      {fontsLoaded ? (
-        <View style={styles.container}>
-          <Text>
-            Open up App.tsx to start working on your app! lalalaaa a a a
-          </Text>
-        </View>
-      ) : (
-        <Loading />
-      )}
+      {fontsLoaded ? <Home /> : <Loading />}
     </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
