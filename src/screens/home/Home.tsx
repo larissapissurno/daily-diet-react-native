@@ -5,6 +5,7 @@ import {
   Header,
   IconOpen,
   Logo,
+  MealsListTitle,
   Percent,
   PercentDescription,
   PercentTitle,
@@ -14,6 +15,7 @@ import avatarImage from "@assets/avatar.png";
 import { useTheme } from "styled-components/native";
 import { Button } from "@components/button/Button";
 import { ReactNode } from "react";
+import { MealsListItem } from "./MealsListItem";
 
 type Home = ViewProps & {};
 
@@ -42,6 +44,11 @@ export function Home(props: Home) {
       <Button style={{ marginTop: 12 }} icon="add">
         Nova refeição
       </Button>
+
+      <Text>{"\n"}</Text>
+
+      <MealsListTitle>20.8.23</MealsListTitle>
+      <MealsListItem time="20:00" description="Lasagna" hasEscapedDiet />
     </Container>
   );
 }
