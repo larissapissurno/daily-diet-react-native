@@ -7,7 +7,7 @@ import {
   TimeContainer,
 } from "./MealsListItem.styles";
 
-type MealsListItem = ViewProps & {
+type MealsListItemProps = ViewProps & {
   time: string;
   description: string;
   hasEscapedDiet: boolean;
@@ -17,7 +17,7 @@ export function MealsListItem({
   time,
   description,
   hasEscapedDiet,
-}: MealsListItem) {
+}: MealsListItemProps) {
   return (
     <Container>
       <TimeContainer>

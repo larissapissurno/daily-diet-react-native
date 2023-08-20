@@ -63,10 +63,17 @@ export const Avatar = styled.Image`
   height: 40px;
 `;
 
+export const MealsListTitleContainer = styled.View`
+  background-color: ${({ theme }) => theme.COLORS.WHITE};
+  width: 100%;
+`;
+
 export const MealsListTitle = styled.Text`
   ${({ theme }) => css`
     font-size: ${theme.FONT_SIZE.LG}px;
     font-family: ${theme.FONT_FAMILY.BOLD};
     color: ${theme.COLORS.GRAY_700};
+    margin-bottom: 10px;
+    margin-top: 12px;
   `};
 `;

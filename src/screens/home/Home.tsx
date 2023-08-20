@@ -1,4 +1,10 @@
-import { Text, ViewProps } from "react-native";
+import {
+  SectionBase,
+  SectionList,
+  SectionListData,
+  Text,
+  ViewProps,
+} from "react-native";
 import {
   Avatar,
   Container,
@@ -6,6 +12,7 @@ import {
   IconOpen,
   Logo,
   MealsListTitle,
+  MealsListTitleContainer,
   Percent,
   PercentDescription,
   PercentTitle,
@@ -14,13 +21,42 @@ import logoImage from "@assets/logo.png";
 import avatarImage from "@assets/avatar.png";
 import { useTheme } from "styled-components/native";
 import { Button } from "@components/button/Button";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { MealsListItem } from "./MealsListItem";
+
+type MealsListItemResponse = {
+  time: string;
+  description: string;
+  hasEscapedDiet: boolean;
+};
 
 type Home = ViewProps & {};
 
+const MEALS_DATA = [
+  {
+    title: "20.08.23",
+    data: [
+      { time: "20:00", description: "Lasagna", hasEscapedDiet: true },
+      { time: "17:00", description: "Pão com café", hasEscapedDiet: false },
+      { time: "14:00", description: "Lasagna e Arroz", hasEscapedDiet: false },
+      { time: "08:00", description: "Café", hasEscapedDiet: false },
+    ],
+  },
+  {
+    title: "19.08.23",
+    data: [
+      { time: "20:00", description: "Lasagna", hasEscapedDiet: true },
+      { time: "17:00", description: "Pão com café", hasEscapedDiet: false },
+      { time: "14:00", description: "Lasagna e Arroz", hasEscapedDiet: false },
+      { time: "08:00", description: "Café", hasEscapedDiet: false },
+    ],
+  },
+];
+
 export function Home(props: Home) {
   const theme = useTheme();
+  const [meals, setMeals] =
+    useState<SectionListData<MealsListItemResponse>[]>(MEALS_DATA);
 
   return (
     <Container>
@@ -45,10 +81,17 @@ export function Home(props: Home) {
         Nova refeição
       </Button>
 
-      <Text>{"\n"}</Text>
-
-      <MealsListTitle>20.8.23</MealsListTitle>
-      <MealsListItem time="20:00" description="Lasagna" hasEscapedDiet />
+      <SectionList<MealsListItemResponse>
+        sections={meals}
+        keyExtractor={(item, index) => item.description + index}
+        renderItem={({ item }) => <MealsListItem {...item} />}
+        renderSectionHeader={({ section: { title } }) => (
+          <MealsListTitleContainer>
+            <MealsListTitle>{title}</MealsListTitle>
+          </MealsListTitleContainer>
+        )}
+        style={{ marginTop: 24 }}
+      />
     </Container>
   );
 }
