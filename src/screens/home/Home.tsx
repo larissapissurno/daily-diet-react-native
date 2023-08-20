@@ -1,4 +1,4 @@
-import { ViewProps } from "react-native";
+import { Text, ViewProps } from "react-native";
 import {
   Avatar,
   Container,
@@ -12,6 +12,8 @@ import {
 import logoImage from "@assets/logo.png";
 import avatarImage from "@assets/avatar.png";
 import { useTheme } from "styled-components/native";
+import { Button } from "@components/button/Button";
+import { ReactNode } from "react";
 
 type Home = ViewProps & {};
 
@@ -32,6 +34,14 @@ export function Home(props: Home) {
 
         <IconOpen />
       </Percent>
+
+      <Text style={{ fontSize: theme.FONT_SIZE.MD, marginTop: 42 }}>
+        Refeições
+      </Text>
+
+      <Button style={{ marginTop: 12 }} icon="add">
+        Nova refeição
+      </Button>
     </Container>
   );
 }

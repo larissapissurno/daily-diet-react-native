@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components/native";
-import { ArrowUpRight } from "phosphor-react-native";
+import { ArrowUpRight, Plus } from "phosphor-react-native";
 
 export const Container = styled.View`
   margin-top: 50px; /**TODO: Remove this when safe area view is implemented */
