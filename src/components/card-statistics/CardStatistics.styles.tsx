@@ -37,21 +37,31 @@ export const Description = styled.Text`
   `};
 `;
 
-export const IconOpen = styled(ArrowUpRight).attrs(({ theme }) => ({
-  color: theme.COLORS.GREEN_DARK,
-  size: 24,
-  weight: "bold",
-}))`
+export const IconOpen = styled(ArrowUpRight).attrs<VariantProps>(
+  ({ theme, variant }) => ({
+    color:
+      variant === "success" ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK,
+    size: 24,
+    weight: "bold",
+  })
+)`
   position: absolute;
   top: 12px;
   right: 12px;
 `;
 
-export const IconGoBack = styled(ArrowLeft).attrs(({ theme }) => ({
-  color: theme.COLORS.GREEN_DARK,
-  size: 24,
-  weight: "bold",
-}))`
+export const IconGoBack = styled(ArrowLeft).attrs<VariantProps>(
+  ({ theme, variant }) => ({
+    color:
+      variant === "success"
+        ? theme.COLORS.GREEN_DARK
+        : variant === "danger"
+        ? theme.COLORS.RED_DARK
+        : theme.COLORS.GRAY_300,
+    size: 24,
+    weight: "bold",
+  })
+)`
   position: absolute;
   top: 0;
   left: 0;

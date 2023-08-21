@@ -29,8 +29,8 @@ export function CardStatistics({
     <Container variant={variant} {...rest}>
       <Title>{title}</Title>
       <Description>{description}</Description>
-      {showDetailsIcon && <IconOpen />}
-      {showGoBackIcon && <IconGoBack />}
+      {showDetailsIcon && <IconOpen variant={variant} />}
+      {showGoBackIcon && <IconGoBack variant={variant} />}
     </Container>
   );
 }
