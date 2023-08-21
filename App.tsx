@@ -10,6 +10,7 @@ import {
 import { Loading } from "@components/loading/Loading";
 import { Home } from "@screens/home/Home";
 import { Statistic } from "@screens/statistic/Statistic";
+import { NewMeal } from "@screens/new-meal/NewMeal";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ NunitoSans_400Regular, NunitoSans_700Bold });
@@ -18,7 +19,7 @@ export default function App() {
     <ThemeProvider theme={defaultTheme}>
       <StatusBar barStyle="default" backgroundColor="transparent" translucent />
 
-      {fontsLoaded ? <Statistic /> : <Loading />}
+      {fontsLoaded ? <NewMeal /> : <Loading />}
     </ThemeProvider>
   );
 }
