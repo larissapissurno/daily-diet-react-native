@@ -5,4 +5,5 @@ export const ContentContainer = styled.View`
   background-color: ${({ theme }) => theme.COLORS.WHITE};
   border-radius: 20px;
   padding: 30px 24px;
+  gap: 16px;
 `;

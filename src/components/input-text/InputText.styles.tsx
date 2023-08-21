@@ -10,10 +10,10 @@ export const Label = styled.Text`
 
 export const Input = styled.TextInput`
   width: 100%;
-  min-height: 48px;
-  max-height: 48px;
+  min-height: ${({ multiline }) => (multiline ? 120 : 48)}px;
+  max-height: ${({ multiline }) => (multiline ? 120 : 48)}px;
 
-  padding: 0 16px;
+  padding: 16px;
   margin-top: 8px;
 
   border: 1px solid ${({ theme }) => theme.COLORS.GRAY_400};

@@ -25,6 +25,13 @@ export function NewMeal({}: NewMealProps) {
 
       <ContentContainer>
         <InputText label="Nome" />
+
+        <InputText
+          label="Descrição"
+          multiline
+          numberOfLines={4}
+          maxLength={140}
+        />
       </ContentContainer>
     </Container>
   );

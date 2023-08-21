@@ -5,11 +5,11 @@ type InputTextProps = TextInputProps & {
   label: string;
 };
 
-export function InputText({ label, ...rest }: InputTextProps) {
+export function InputText({ label, multiline, ...rest }: InputTextProps) {
   return (
     <Container>
       <Label>{label}</Label>
-      <Input {...rest} />
+      <Input multiline={multiline} {...rest} />
     </Container>
   );
 }
