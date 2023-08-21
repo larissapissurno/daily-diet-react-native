@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components/native";
-import { ArrowUpRight, Plus } from "phosphor-react-native";
-import { VariantProps } from "src/@types/styled";
+import { ArrowUpRight } from "phosphor-react-native";
 
 export const Container = styled.View`
   margin-top: 50px; /**TODO: Remove this when safe area view is implemented */
@@ -14,36 +13,6 @@ export const Container = styled.View`
 export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
-`;
-
-export const Percent = styled.TouchableOpacity<VariantProps>`
-  align-items: center;
-  justify-content: center;
-
-  min-height: 102px;
-  max-height: 102px;
-  width: 100%;
-  margin-top: 32px;
-  border-radius: 8px;
-  background-color: ${({ theme, variant }) =>
-    variant === "success" ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
-  padding: 12px;
-`;
-
-export const PercentTitle = styled.Text`
-  ${({ theme }) => css`
-    font-size: ${theme.FONT_SIZE.XXL}px;
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    color: ${theme.COLORS.GRAY_700};
-  `};
-`;
-
-export const PercentDescription = styled.Text`
-  ${({ theme }) => css`
-    font-size: ${theme.FONT_SIZE.SM}px;
-    font-family: ${theme.FONT_FAMILY.REGULAR};
-    color: ${theme.COLORS.GRAY_700};
-  `};
 `;
 
 export const IconOpen = styled(ArrowUpRight).attrs(({ theme }) => ({

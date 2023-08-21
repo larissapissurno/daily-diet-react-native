@@ -1,28 +1,19 @@
-import {
-  SectionBase,
-  SectionList,
-  SectionListData,
-  Text,
-  ViewProps,
-} from "react-native";
+import { SectionList, SectionListData, Text, ViewProps } from "react-native";
 import {
   Avatar,
   Container,
   Header,
-  IconOpen,
   Logo,
   MealsListTitle,
   MealsListTitleContainer,
-  Percent,
-  PercentDescription,
-  PercentTitle,
 } from "./Home.styles";
 import logoImage from "@assets/logo.png";
 import avatarImage from "@assets/avatar.png";
 import { useTheme } from "styled-components/native";
 import { Button } from "@components/button/Button";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import { MealsListItem } from "./MealsListItem";
+import { CardStatistics } from "@components/card-statistics/CardStatistics";
 
 type MealsListItemResponse = {
   time: string;
@@ -72,12 +63,12 @@ export function Home(props: Home) {
         <Avatar source={avatarImage} />
       </Header>
 
-      <Percent variant="danger">
-        <PercentTitle>90,86%</PercentTitle>
-        <PercentDescription>das refeições dentro da dieta</PercentDescription>
-
-        <IconOpen />
-      </Percent>
+      <CardStatistics
+        title="90,98%"
+        description="das refeições dentro da dieta"
+        variant="success"
+        showDetailsIcon
+      />
 
       <Text style={{ fontSize: theme.FONT_SIZE.MD, marginTop: 42 }}>
         Refeições

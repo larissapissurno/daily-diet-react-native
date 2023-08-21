@@ -7,7 +7,7 @@ declare module "styled-components/native" {
   export interface DefaultTheme extends ThemeTpe {}
 }
 
-export type Variant = "success" | "danger";
+export type Variant = "success" | "danger" | "default";
 
 export type VariantProps = {
   variant?: Variant;
