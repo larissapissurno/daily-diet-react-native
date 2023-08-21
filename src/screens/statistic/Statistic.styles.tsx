@@ -12,15 +12,7 @@ export const HeaderContainer = styled.View`
   padding: 0 24px;
 `;
 
-export const Content = styled.View`
-  flex: 1;
-  background-color: ${({ theme }) => theme.COLORS.WHITE};
-  border-radius: 20px;
-  padding: 0 24px;
-`;
-
 export const Title = styled.Text`
-  margin-top: 30px;
   text-align: center;
   font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
 `;

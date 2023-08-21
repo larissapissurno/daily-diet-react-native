@@ -1,11 +1,6 @@
 import { CardStatistics } from "@components/card-statistics/CardStatistics";
-import {
-  Container,
-  Content,
-  HeaderContainer,
-  Row,
-  Title,
-} from "./Statistic.styles";
+import { Container, HeaderContainer, Row, Title } from "./Statistic.styles";
+import { ContentContainer } from "@components/content-container/ContentContainer.styles";
 
 export function Statistic() {
   return (
@@ -19,7 +14,7 @@ export function Statistic() {
         />
       </HeaderContainer>
 
-      <Content>
+      <ContentContainer>
         <Title>Refeições</Title>
 
         <CardStatistics
@@ -53,7 +48,7 @@ export function Statistic() {
             style={{ flex: 0.5 }}
           />
         </Row>
-      </Content>
+      </ContentContainer>
     </Container>
   );
 }
