@@ -7,6 +7,8 @@ import {
   IconGoBack,
 } from "./NewMeal.styles";
 import { ContentContainer } from "@components/content-container/ContentContainer.styles";
+import React from "react";
+import { InputText } from "@components/input-text/InputText";
 
 type NewMealProps = {};
 
@@ -21,7 +23,9 @@ export function NewMeal({}: NewMealProps) {
         </ButtonGoBack>
       </Header>
 
-      <ContentContainer></ContentContainer>
+      <ContentContainer>
+        <InputText label="Nome" />
+      </ContentContainer>
     </Container>
   );
 }
