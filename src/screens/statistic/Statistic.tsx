@@ -1,6 +1,6 @@
 import { CardStatistics } from "@components/card-statistics/CardStatistics";
 import { Container, HeaderContainer, Row, Title } from "./Statistic.styles";
-import { ContentContainer } from "@components/content-container/ContentContainer.styles";
+import { ContentContainer } from "@components/_shared.styles";
 
 export function Statistic() {
   return (

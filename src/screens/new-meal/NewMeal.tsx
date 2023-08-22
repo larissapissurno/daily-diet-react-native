@@ -6,9 +6,10 @@ import {
   HeaderTitle,
   IconGoBack,
 } from "./NewMeal.styles";
-import { ContentContainer } from "@components/content-container/ContentContainer.styles";
 import React from "react";
 import { InputText } from "@components/input-text/InputText";
+import { View } from "react-native";
+import { ContentContainer } from "@components/_shared.styles";
 
 type NewMealProps = {};
 
@@ -32,6 +33,15 @@ export function NewMeal({}: NewMealProps) {
           numberOfLines={4}
           maxLength={140}
         />
+
+        <View style={{ flexDirection: "row", width: "100%", gap: 16 }}>
+          <View style={{ flex: 0.5 }}>
+            <InputText label="Data" />
+          </View>
+          <View style={{ flex: 0.5 }}>
+            <InputText label="Hora" />
+          </View>
+        </View>
       </ContentContainer>
     </Container>
   );

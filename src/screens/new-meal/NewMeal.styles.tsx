@@ -22,7 +22,7 @@ export const Header = styled.View`
 export const HeaderTitle = styled.Text`
   text-align: center;
   font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
-  font-weight: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
 `;
 
 export const ButtonGoBack = styled(TouchableOpacity).attrs(() => ({

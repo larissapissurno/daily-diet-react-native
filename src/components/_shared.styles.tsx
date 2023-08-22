@@ -7,3 +7,9 @@ export const ContentContainer = styled.View`
   padding: 30px 24px;
   gap: 16px;
 `;
+
+export const Row = styled.View`
+  width: 100%;
+  flex-direction: row;
+  gap: 16px;
+`;
