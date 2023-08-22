@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { InputText } from "@components/input-text/InputText";
-import { ContentContainer } from "@components/_shared.styles";
+import { ContentContainer, Row } from "@components/_shared.styles";
 import { DietToggle } from "./DietToggle";
 import {
   ButtonGoBack,
@@ -24,7 +24,7 @@ export function NewMeal({}: NewMealProps) {
         </ButtonGoBack>
       </Header>
 
-      <ContentContainer>
+      <ContentContainer style={{ gap: 24 }}>
         <InputText label="Nome" />
 
         <InputText
@@ -34,14 +34,14 @@ export function NewMeal({}: NewMealProps) {
           maxLength={140}
         />
 
-        <View style={{ flexDirection: "row", width: "100%", gap: 16 }}>
+        <Row>
           <View style={{ flex: 0.5 }}>
             <InputText label="Data" />
           </View>
           <View style={{ flex: 0.5 }}>
             <InputText label="Hora" />
           </View>
-        </View>
+        </Row>
 
         <DietToggle onValueChange={(isActive) => {}} />
       </ContentContainer>
