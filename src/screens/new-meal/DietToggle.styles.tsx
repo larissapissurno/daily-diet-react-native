@@ -5,7 +5,7 @@ export const Container = styled.View`
   width: 100%;
   flex-direction: row;
   gap: 16px;
-  margin-top: -10px;
+  margin-top: 8px;
 `;
 
 type OptionProps = VariantProps & {
@@ -61,4 +61,6 @@ export const Label = styled.Text`
   font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
   color: ${({ theme }) => theme.COLORS.GRAY_600};
+
+  /* margin-top: 8px; */
 `;

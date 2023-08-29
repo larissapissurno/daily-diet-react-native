@@ -7,6 +7,7 @@ import {
   Label,
 } from "./DietToggle.styles";
 import { ViewProps } from "react-native-svg/lib/typescript/fabric/utils";
+import { View } from "react-native";
 
 type DietToggleProps = ViewProps & {
   onValueChange: (value: boolean) => void;
@@ -21,7 +22,7 @@ export function DietToggle({ onValueChange, ...rest }: DietToggleProps) {
   }
 
   return (
-    <>
+    <View>
       <Label>Está dentro da dieta?</Label>
       <Container>
         <Option
@@ -42,6 +43,6 @@ export function DietToggle({ onValueChange, ...rest }: DietToggleProps) {
           <OptionText>Não</OptionText>
         </Option>
       </Container>
-    </>
+    </View>
   );
 }

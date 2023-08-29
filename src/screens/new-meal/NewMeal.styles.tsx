@@ -42,3 +42,8 @@ export const IconGoBack = styled(ArrowLeft).attrs(({ theme }) => ({
   size: 24,
   weight: "bold",
 }))``;
+
+export const Form = styled.View`
+  flex: 1;
+  gap: 16px;
+`;

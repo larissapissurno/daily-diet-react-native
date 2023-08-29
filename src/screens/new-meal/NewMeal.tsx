@@ -6,10 +6,12 @@ import { DietToggle } from "./DietToggle";
 import {
   ButtonGoBack,
   Container,
+  Form,
   Header,
   HeaderTitle,
   IconGoBack,
 } from "./NewMeal.styles";
+import { Button } from "@components/button/Button";
 
 type NewMealProps = {};
 
@@ -25,25 +27,29 @@ export function NewMeal({}: NewMealProps) {
       </Header>
 
       <ContentContainer style={{ gap: 24 }}>
-        <InputText label="Nome" />
+        <Form>
+          <InputText label="Nome" />
 
-        <InputText
-          label="Descrição"
-          multiline
-          numberOfLines={4}
-          maxLength={140}
-        />
+          <InputText
+            label="Descrição"
+            multiline
+            numberOfLines={4}
+            maxLength={140}
+          />
 
-        <Row>
-          <View style={{ flex: 0.5 }}>
-            <InputText label="Data" />
-          </View>
-          <View style={{ flex: 0.5 }}>
-            <InputText label="Hora" />
-          </View>
-        </Row>
+          <Row>
+            <View style={{ flex: 0.5 }}>
+              <InputText label="Data" />
+            </View>
+            <View style={{ flex: 0.5 }}>
+              <InputText label="Hora" />
+            </View>
+          </Row>
 
-        <DietToggle onValueChange={(isActive) => {}} />
+          <DietToggle onValueChange={(isActive) => {}} />
+        </Form>
+
+        <Button>Cadastrar refeição</Button>
       </ContentContainer>
     </Container>
   );
