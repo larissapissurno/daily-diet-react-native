@@ -6,6 +6,7 @@ export const Container = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 8px;
 
   min-height: 50px;
   max-height: 50px;

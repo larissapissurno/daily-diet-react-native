@@ -1,18 +1,16 @@
 import { TouchableOpacityProps } from "react-native";
-import { Container, Icon, Title } from "./Button.styles";
-import { PropsWithChildren } from "react";
-import { IStyledComponent } from "styled-components/native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Container, Title } from "./Button.styles";
+import { PropsWithChildren, ReactElement } from "react";
 
 type ButtonProps = TouchableOpacityProps &
   PropsWithChildren & {
-    icon: keyof typeof MaterialIcons.glyphMap;
+    iconElement?: ReactElement;
   };
 
-export function Button({ children, icon, ...rest }: ButtonProps) {
+export function Button({ children, iconElement, ...rest }: ButtonProps) {
   return (
     <Container {...rest}>
-      {!!icon && <Icon name={icon} />}
+      {!!iconElement && iconElement}
       <Title>{children}</Title>
     </Container>
   );

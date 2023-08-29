@@ -14,6 +14,7 @@ import { Button } from "@components/button/Button";
 import { useState } from "react";
 import { MealsListItem } from "./MealsListItem";
 import { CardStatistics } from "@components/card-statistics/CardStatistics";
+import { Plus } from "phosphor-react-native";
 
 type MealsListItemResponse = {
   time: string;
@@ -74,7 +75,12 @@ export function Home(props: Home) {
         Refeições
       </Text>
 
-      <Button style={{ marginTop: 12 }} icon="add">
+      <Button
+        style={{ marginTop: 12 }}
+        iconElement={
+          <Plus color={theme.COLORS.WHITE} size={20} weight="bold" />
+        }
+      >
         Nova refeição
       </Button>
 

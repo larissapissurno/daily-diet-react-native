@@ -19,7 +19,7 @@ export default function App() {
     <ThemeProvider theme={defaultTheme}>
       <StatusBar barStyle="default" backgroundColor="transparent" translucent />
 
-      {fontsLoaded ? <NewMeal /> : <Loading />}
+      {fontsLoaded ? <Home /> : <Loading />}
     </ThemeProvider>
   );
 }
