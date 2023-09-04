@@ -15,7 +15,7 @@ export const Container = styled.View`
 export const Title = styled.Text<VariantProps>`
   ${({ theme, variant }) => css`
     font-family: ${theme.FONT_FAMILY.BOLD};
-    font-size: ${theme.FONT_SIZE.XL};
+    font-size: ${theme.FONT_SIZE.XL}px;
     color: ${variant === "success"
       ? theme.COLORS.GREEN_DARK
       : theme.COLORS.RED_DARK};

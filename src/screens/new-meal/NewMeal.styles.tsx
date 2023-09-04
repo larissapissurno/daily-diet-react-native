@@ -1,12 +1,9 @@
 import { ArrowLeft } from "phosphor-react-native";
 import { TouchableOpacity } from "react-native";
-import { VariantProps } from "src/@types/styled";
 import { styled } from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
-  padding-top: 50px; /**TODO: Remove this when safe area view is implemented */
-
   background-color: ${({ theme }) => theme.COLORS.GRAY_300};
 `;
 
@@ -14,9 +11,12 @@ export const Header = styled.View`
   width: 100%;
   min-height: 64px;
   max-height: 64px;
+
   justify-content: center;
   align-items: center;
   position: relative;
+
+  margin-top: 50px;
 `;
 
 export const HeaderTitle = styled.Text`

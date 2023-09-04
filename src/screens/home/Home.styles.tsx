@@ -2,8 +2,6 @@ import styled, { css } from "styled-components/native";
 import { ArrowUpRight } from "phosphor-react-native";
 
 export const Container = styled.View`
-  margin-top: 50px; /**TODO: Remove this when safe area view is implemented */
-
   flex: 1;
   padding: 24px 24px;
 
@@ -11,6 +9,7 @@ export const Container = styled.View`
 `;
 
 export const Header = styled.View`
+  margin-top: 50px;
   flex-direction: row;
   justify-content: space-between;
 `;
