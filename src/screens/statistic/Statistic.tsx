@@ -1,8 +1,14 @@
 import { CardStatistics } from "@components/card-statistics/CardStatistics";
 import { Container, HeaderContainer, Row, Title } from "./Statistic.styles";
 import { ContentContainer } from "@components/_shared.styles";
+import { useNavigation } from "@react-navigation/native";
 
 export function Statistic() {
+  const navigation = useNavigation();
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
   return (
     <Container variant="success">
       <HeaderContainer>
@@ -11,6 +17,7 @@ export function Statistic() {
           description="das refeições dentro da dieta"
           variant="success"
           showGoBackIcon
+          onPress={handleGoBack}
         />
       </HeaderContainer>
 

@@ -2,7 +2,7 @@ import { VariantProps } from "src/@types/styled";
 import styled from "styled-components/native";
 
 export const Container = styled.View<VariantProps>`
-  padding-top: 24px; /**TODO: Remove this when safe area view is implemented */
+  padding-top: 24px;
   flex: 1;
   background-color: ${({ theme, variant }) =>
     variant === "success" ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};

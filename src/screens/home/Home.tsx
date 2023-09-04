@@ -63,6 +63,10 @@ export function Home(props: Home) {
     navigation.navigate("new");
   }
 
+  function handleGoToStatistic() {
+    navigation.navigate("statistic");
+  }
+
   return (
     <Container>
       <Header>
@@ -76,6 +80,7 @@ export function Home(props: Home) {
         description="das refeições dentro da dieta"
         variant="success"
         showDetailsIcon
+        onPress={handleGoToStatistic}
       />
 
       <Text style={{ fontSize: theme.FONT_SIZE.MD, marginTop: 42 }}>
