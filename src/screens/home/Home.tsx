@@ -15,6 +15,7 @@ import { useState } from "react";
 import { MealsListItem } from "./MealsListItem";
 import { CardStatistics } from "@components/card-statistics/CardStatistics";
 import { Plus } from "phosphor-react-native";
+import { useNavigation } from "@react-navigation/native";
 
 type MealsListItemResponse = {
   time: string;
@@ -56,6 +57,12 @@ export function Home(props: Home) {
   const [meals, setMeals] =
     useState<SectionListData<MealsListItemResponse>[]>(MEALS_DATA);
 
+  const navigation = useNavigation();
+
+  function handleNewMeal() {
+    navigation.navigate("new");
+  }
+
   return (
     <Container>
       <Header>
@@ -80,6 +87,7 @@ export function Home(props: Home) {
         iconElement={
           <Plus color={theme.COLORS.WHITE} size={20} weight="bold" />
         }
+        onPress={handleNewMeal}
       >
         Nova refeição
       </Button>

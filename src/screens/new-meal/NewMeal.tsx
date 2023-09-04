@@ -12,16 +12,27 @@ import {
   IconGoBack,
 } from "./NewMeal.styles";
 import { Button } from "@components/button/Button";
+import { useNavigation } from "@react-navigation/native";
 
 type NewMealProps = {};
 
 export function NewMeal({}: NewMealProps) {
+  const navigation = useNavigation();
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
+  function handleNewMeal() {
+    navigation.navigate("feedback", { variant: "success" });
+  }
+
   return (
     <Container>
       <Header>
         <HeaderTitle>Nova Refeição</HeaderTitle>
 
-        <ButtonGoBack>
+        <ButtonGoBack onPress={handleGoBack}>
           <IconGoBack />
         </ButtonGoBack>
       </Header>
@@ -49,7 +60,7 @@ export function NewMeal({}: NewMealProps) {
           <DietToggle onValueChange={(isActive) => {}} />
         </Form>
 
-        <Button>Cadastrar refeição</Button>
+        <Button onPress={handleNewMeal}>Cadastrar refeição</Button>
       </ContentContainer>
     </Container>
   );

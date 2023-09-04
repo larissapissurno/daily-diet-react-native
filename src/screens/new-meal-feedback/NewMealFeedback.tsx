@@ -5,15 +5,22 @@ import {
   Subtitle,
   Title,
 } from "./NewMealFeedback.styles";
-import { VariantProps } from "src/@types/styled";
 import { Text } from "react-native";
 import feedbackPositiveImage from "@assets/new-meal-feedback-positive.png";
 import feedbackNegativeImage from "@assets/new-meal-feedback-negative.png";
+import { FeedbackScreenRouteProp } from "src/@types/navigation";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-type NewMealFeedbackProps = VariantProps & {};
-
-export function NewMealFeedback({ variant }: NewMealFeedbackProps) {
+export function NewMealFeedback() {
+  const {
+    params: { variant },
+  } = useRoute<FeedbackScreenRouteProp>();
+  const navigation = useNavigation();
   const title = variant === "success" ? "Continue assim!" : "Que pena!";
+
+  function handleGoHome() {
+    navigation.navigate("home");
+  }
 
   return (
     <Container>
@@ -39,7 +46,9 @@ export function NewMealFeedback({ variant }: NewMealFeedbackProps) {
         }
       />
 
-      <Button style={{ maxWidth: 200 }}>Ir para a página inicial</Button>
+      <Button style={{ maxWidth: 200 }} onPress={handleGoHome}>
+        Ir para a página inicial
+      </Button>
     </Container>
   );
 }
