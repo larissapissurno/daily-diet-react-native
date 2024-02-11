@@ -16,31 +16,34 @@ import {
 import { Button } from "@components/button/Button";
 import { useNavigation } from "@react-navigation/native";
 
+import { z } from "zod";
+import { newMealFormSchema } from "./NewMeal.validations";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+type NewMealFormSchema = z.infer<typeof newMealFormSchema>;
+
 type NewMealProps = {};
 
 export function NewMeal({}: NewMealProps) {
-  const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState(new Date());
+  const defaultDate = new Date();
 
   const navigation = useNavigation();
+
+  const form = useForm<NewMealFormSchema>({
+    resolver: zodResolver(newMealFormSchema),
+  });
 
   function handleGoBack() {
     navigation.goBack();
   }
 
-  function handleNewMeal() {
+  function handleNewMeal(data: NewMealFormSchema) {
+    console.log("form data: ", data);
     navigation.navigate("feedback", { variant: "success" });
   }
 
-  function handleDateChange(event: unknown, selectedDate: unknown) {
-    const currentDate = selectedDate || date;
-    setDate(currentDate as Date);
-  }
-
-  function handleTimeChange(event: unknown, selectedTime: unknown) {
-    const currentTime = selectedTime || time;
-    setTime(currentTime as Date);
-  }
+  console.log("errors: ", form.formState.errors);
 
   return (
     <Container>
@@ -54,13 +57,14 @@ export function NewMeal({}: NewMealProps) {
 
       <ContentContainer style={{ gap: 24 }}>
         <Form>
-          <InputText label="Nome" />
+          <InputText label="Nome" {...form.register("name")} />
 
           <InputText
             label="Descrição"
             multiline
             numberOfLines={4}
             maxLength={140}
+            {...form.register("description")}
           />
 
           <Row>
@@ -72,12 +76,19 @@ export function NewMeal({}: NewMealProps) {
             >
               <Label>Data</Label>
 
-              <DateTimeInput
-                onChange={handleDateChange}
-                style={{ width: 160 }}
-                value={date}
-                mode="date"
-                is24Hour
+              <Controller
+                name="mealDate"
+                control={form.control}
+                defaultValue={defaultDate}
+                render={({ field }) => (
+                  <DateTimeInput
+                    onChange={(e, value) => form.setValue("mealDate", value)}
+                    style={{ width: 160 }}
+                    value={field.value || defaultDate}
+                    mode="date"
+                    is24Hour
+                  />
+                )}
               />
             </View>
             <View
@@ -88,20 +99,37 @@ export function NewMeal({}: NewMealProps) {
             >
               <Label>Hora</Label>
 
-              <DateTimeInput
-                onChange={handleTimeChange}
-                style={{ width: 70 }}
-                value={time}
-                mode="time"
-                is24Hour
+              <Controller
+                control={form.control}
+                name="mealTime"
+                defaultValue={defaultDate}
+                render={({ field }) => (
+                  <DateTimeInput
+                    onChange={(e, value) => form.setValue("mealTime", value)}
+                    style={{ width: 70 }}
+                    value={field.value || defaultDate}
+                    mode="time"
+                    is24Hour
+                  />
+                )}
               />
             </View>
           </Row>
 
-          <DietToggle onValueChange={(isActive) => {}} />
+          <Controller
+            control={form.control}
+            name="onDiet"
+            render={() => (
+              <DietToggle
+                onValueChange={(isActive) => form.setValue("onDiet", isActive)}
+              />
+            )}
+          />
         </Form>
 
-        <Button onPress={handleNewMeal}>Cadastrar refeição</Button>
+        <Button onPress={form.handleSubmit(handleNewMeal)}>
+          Cadastrar refeição
+        </Button>
       </ContentContainer>
     </Container>
   );
