@@ -15,7 +15,6 @@ import {
 } from "./NewMeal.styles";
 import { Button } from "@components/button/Button";
 import { useNavigation } from "@react-navigation/native";
-import DateTimePicker from "@react-native-community/datetimepicker";
 
 type NewMealProps = {};
 
