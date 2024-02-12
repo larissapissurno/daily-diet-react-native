@@ -9,19 +9,22 @@ import {
 } from "@expo-google-fonts/nunito-sans";
 import { Loading } from "@components/loading/Loading";
 import { Routes } from "@routes/Routes";
+import { Meal, MealsProvider } from "@contexts/Meals.context";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ NunitoSans_400Regular, NunitoSans_700Bold });
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor="transparent"
-        translucent
-      />
+      <MealsProvider>
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor="transparent"
+          translucent
+        />
 
-      {fontsLoaded ? <Routes /> : <Loading />}
+        {fontsLoaded ? <Routes /> : <Loading />}
+      </MealsProvider>
     </ThemeProvider>
   );
 }

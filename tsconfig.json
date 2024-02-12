@@ -16,7 +16,8 @@
       "@screens/*": ["./src/screens/*"],
       "@storage/*": ["./src/storage/*"],
       "@themes/*": ["./src/themes/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@contexts/*": ["./src/contexts/*"]
     }
   }
 }

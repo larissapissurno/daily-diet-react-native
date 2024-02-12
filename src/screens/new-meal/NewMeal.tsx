@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View } from "react-native";
 import { InputText } from "@components/input-text/InputText";
 import { ContentContainer, Row } from "@components/_shared.styles";
@@ -22,6 +22,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormHelper } from "@components/input-text/InputText.styles";
 import { Variant } from "src/@types/styled";
+import { Meal, useMealsContext } from "@contexts/Meals.context";
 
 type NewMealFormSchema = z.infer<typeof newMealFormSchema>;
 
@@ -31,6 +32,7 @@ export function NewMeal({}: NewMealProps) {
   const defaultDate = new Date();
 
   const navigation = useNavigation();
+  const mealsStore = useMealsContext();
 
   const form = useForm<NewMealFormSchema>({
     resolver: zodResolver(newMealFormSchema),
@@ -45,6 +47,9 @@ export function NewMeal({}: NewMealProps) {
 
   function handleNewMeal(data: NewMealFormSchema) {
     console.log("form data: ", data);
+
+    mealsStore.addMeal(data as Omit<Meal, "id">);
+
     const feedbackVariant: Variant = data.onDiet ? "success" : "danger";
     navigation.navigate("feedback", { variant: feedbackVariant });
   }
