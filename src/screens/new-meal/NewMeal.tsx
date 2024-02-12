@@ -87,6 +87,7 @@ export function NewMeal({}: NewMealProps) {
                 defaultValue=""
                 onChange={(e) => onChange(e.nativeEvent.text)}
                 onBlur={onBlur}
+                multiline
               />
             )}
           />
