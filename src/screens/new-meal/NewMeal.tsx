@@ -20,6 +20,7 @@ import { z } from "zod";
 import { newMealFormSchema } from "./NewMeal.validations";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { FormHelper } from "@components/input-text/InputText.styles";
 
 type NewMealFormSchema = z.infer<typeof newMealFormSchema>;
 
@@ -81,6 +82,7 @@ export function NewMeal({}: NewMealProps) {
               <InputText
                 label="Descrição"
                 value={value}
+                defaultValue=""
                 onChange={(e) => onChange(e.nativeEvent.text)}
                 onBlur={onBlur}
               />
@@ -139,12 +141,17 @@ export function NewMeal({}: NewMealProps) {
           <Controller
             control={form.control}
             name="onDiet"
-            render={() => (
-              <DietToggle
-                onValueChange={(isActive) => form.setValue("onDiet", isActive)}
-              />
+            render={({ field: { onChange } }) => (
+              <DietToggle onValueChange={onChange} />
             )}
           />
+
+          {form.formState.errors?.onDiet && (
+            <FormHelper error>
+              * Selecione 'Sim' ou 'Não' para informar se a refeição está na
+              dieta.
+            </FormHelper>
+          )}
         </Form>
 
         <Button onPress={form.handleSubmit(handleNewMeal)}>

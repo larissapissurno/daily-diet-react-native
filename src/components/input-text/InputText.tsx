@@ -18,7 +18,7 @@ export function InputText({
     <Container>
       <Label>{label}</Label>
       <Input multiline={multiline} error={!!error} {...rest} />
-      {!!error && <FormHelper error>{error.message}</FormHelper>}
+      {!!error && <FormHelper error>{"* " + error.message}</FormHelper>}
     </Container>
   );
 }
