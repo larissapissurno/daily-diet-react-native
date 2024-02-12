@@ -21,6 +21,7 @@ import { newMealFormSchema } from "./NewMeal.validations";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormHelper } from "@components/input-text/InputText.styles";
+import { Variant } from "src/@types/styled";
 
 type NewMealFormSchema = z.infer<typeof newMealFormSchema>;
 
@@ -44,7 +45,8 @@ export function NewMeal({}: NewMealProps) {
 
   function handleNewMeal(data: NewMealFormSchema) {
     console.log("form data: ", data);
-    navigation.navigate("feedback", { variant: "success" });
+    const feedbackVariant: Variant = data.onDiet ? "success" : "danger";
+    navigation.navigate("feedback", { variant: feedbackVariant });
   }
 
   console.log("errors: ", form.formState.errors);
