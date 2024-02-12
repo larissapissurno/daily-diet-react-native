@@ -32,6 +32,9 @@ export function NewMeal({}: NewMealProps) {
 
   const form = useForm<NewMealFormSchema>({
     resolver: zodResolver(newMealFormSchema),
+    defaultValues: {
+      name: "",
+    },
   });
 
   function handleGoBack() {
@@ -57,14 +60,31 @@ export function NewMeal({}: NewMealProps) {
 
       <ContentContainer style={{ gap: 24 }}>
         <Form>
-          <InputText label="Nome" {...form.register("name")} />
+          <Controller
+            control={form.control}
+            name="name"
+            render={({ field: { value, onChange, onBlur } }) => (
+              <InputText
+                label="Nome"
+                value={value}
+                error={form.formState.errors?.name}
+                onChange={(e) => onChange(e.nativeEvent.text)}
+                onBlur={onBlur}
+              />
+            )}
+          />
 
-          <InputText
-            label="Descrição"
-            multiline
-            numberOfLines={4}
-            maxLength={140}
-            {...form.register("description")}
+          <Controller
+            control={form.control}
+            name="description"
+            render={({ field: { value, onChange, onBlur } }) => (
+              <InputText
+                label="Descrição"
+                value={value}
+                onChange={(e) => onChange(e.nativeEvent.text)}
+                onBlur={onBlur}
+              />
+            )}
           />
 
           <Row>

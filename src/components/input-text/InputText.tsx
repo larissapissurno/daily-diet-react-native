@@ -1,15 +1,24 @@
 import { TextInputProps } from "react-native";
-import { Container, Input, Label } from "./InputText.styles";
+import { Container, FormHelper, Input, Label } from "./InputText.styles";
+import { FieldError } from "react-hook-form";
 
 type InputTextProps = TextInputProps & {
   label: string;
+  required?: boolean;
+  error?: FieldError;
 };
 
-export function InputText({ label, multiline, ...rest }: InputTextProps) {
+export function InputText({
+  label,
+  multiline,
+  error,
+  ...rest
+}: InputTextProps) {
   return (
     <Container>
       <Label>{label}</Label>
-      <Input multiline={multiline} {...rest} />
+      <Input multiline={multiline} error={!!error} {...rest} />
+      {!!error && <FormHelper error>{error.message}</FormHelper>}
     </Container>
   );
 }
