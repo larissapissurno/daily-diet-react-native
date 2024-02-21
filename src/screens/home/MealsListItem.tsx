@@ -10,13 +10,13 @@ import {
 type MealsListItemProps = ViewProps & {
   time: string;
   description: string;
-  hasEscapedDiet: boolean;
+  onDiet: boolean;
 };
 
 export function MealsListItem({
   time,
   description,
-  hasEscapedDiet,
+  onDiet,
 }: MealsListItemProps) {
   return (
     <Container>
@@ -24,7 +24,7 @@ export function MealsListItem({
         <Time>{time}</Time>
       </TimeContainer>
       <Description>{description}</Description>
-      <Status variant={hasEscapedDiet ? "danger" : "success"} />
+      <Status variant={onDiet ? "success" : "danger"} />
     </Container>
   );
 }

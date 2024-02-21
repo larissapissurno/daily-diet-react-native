@@ -16,12 +16,10 @@ import { MealsListItem } from "./MealsListItem";
 import { CardStatistics } from "@components/card-statistics/CardStatistics";
 import { Plus } from "phosphor-react-native";
 import { useNavigation } from "@react-navigation/native";
-
-type MealsListItemResponse = {
-  time: string;
-  description: string;
-  hasEscapedDiet: boolean;
-};
+import {
+  MealsListItemResponse,
+  useMealsContext,
+} from "@contexts/Meals.context";
 
 type Home = ViewProps & {};
 
@@ -54,8 +52,9 @@ const MEALS_DATA = [
 
 export function Home(props: Home) {
   const theme = useTheme();
-  const [meals, setMeals] =
-    useState<SectionListData<MealsListItemResponse>[]>(MEALS_DATA);
+  const mealsStore = useMealsContext();
+
+  console.log("mealsStore", mealsStore.formattedMeals);
 
   const navigation = useNavigation();
 
@@ -98,7 +97,7 @@ export function Home(props: Home) {
       </Button>
 
       <SectionList<MealsListItemResponse>
-        sections={meals}
+        sections={mealsStore.formattedMeals}
         keyExtractor={(item, index) => item.description + index}
         renderItem={({ item }) => <MealsListItem {...item} />}
         renderSectionHeader={({ section: { title } }) => (
