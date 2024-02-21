@@ -55,10 +55,18 @@ export function MealsProvider({
       const mealDate = new Date(meal.mealDate);
       const mealTime = new Date(meal.mealTime);
 
-      const dateKey = mealDate.toISOString().split("T")[0];
+      const dateKey = mealDate.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      });
 
       const mealItem = {
-        time: mealTime.toISOString(),
+        time: mealTime.toLocaleTimeString(undefined, {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }),
         description: meal.name,
         onDiet: meal.onDiet,
       };
