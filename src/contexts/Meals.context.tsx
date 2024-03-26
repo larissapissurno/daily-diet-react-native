@@ -30,7 +30,9 @@ export type MealsListItemResponse = {
 type MealsStats = {
   totalMeals: number;
   totalOnDietMeals: number;
+  totalOffDietMeals: number;
   onDietMealsPercentage: number;
+  bestOnDietStreak: number;
 };
 
 type MealsContextProps = {
@@ -112,11 +114,28 @@ export function MealsProvider({
   function stats(): MealsStats {
     const totalMeals = meals.length;
     const totalOnDietMeals = meals.filter((meal) => meal.onDiet).length;
+    const totalOffDietMeals = totalMeals - totalOnDietMeals;
+
+    const bestOnDietStreak = meals.reduce(
+      (acc, meal) => {
+        if (meal.onDiet) {
+          acc.current += 1;
+          acc.best = Math.max(acc.best, acc.current);
+        } else {
+          acc.current = 0;
+        }
+
+        return acc;
+      },
+      { current: 0, best: 0 }
+    ).best;
 
     return {
       totalMeals,
       totalOnDietMeals,
       onDietMealsPercentage: (totalOnDietMeals / totalMeals) * 100,
+      totalOffDietMeals,
+      bestOnDietStreak,
     };
   }
 

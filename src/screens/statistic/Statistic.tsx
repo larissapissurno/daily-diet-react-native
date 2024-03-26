@@ -2,9 +2,18 @@ import { CardStatistics } from "@components/card-statistics/CardStatistics";
 import { Container, HeaderContainer, Row, Title } from "./Statistic.styles";
 import { ContentContainer } from "@components/_shared.styles";
 import { useNavigation } from "@react-navigation/native";
+import { useMealsContext } from "@contexts/Meals.context";
 
 export function Statistic() {
   const navigation = useNavigation();
+  const mealsStore = useMealsContext();
+  const {
+    bestOnDietStreak,
+    onDietMealsPercentage,
+    totalMeals,
+    totalOffDietMeals,
+    totalOnDietMeals
+  } = mealsStore.stats();
 
   function handleGoBack() {
     navigation.goBack();
@@ -13,7 +22,7 @@ export function Statistic() {
     <Container variant="success">
       <HeaderContainer>
         <CardStatistics
-          title="90,86%"
+          title={onDietMealsPercentage.toFixed(2) + "%"}
           description="das refeições dentro da dieta"
           variant="success"
           showGoBackIcon
@@ -25,14 +34,14 @@ export function Statistic() {
         <Title>Refeições</Title>
 
         <CardStatistics
-          title="22"
+          title={bestOnDietStreak.toString()}
           description="melhor sequência de pratos dentro da dieta"
           variant="default"
           disabled
         />
 
         <CardStatistics
-          title="109"
+          title={totalMeals.toString()}
           description="refeições registradas"
           variant="default"
           disabled
@@ -40,7 +49,7 @@ export function Statistic() {
 
         <Row>
           <CardStatistics
-            title="99"
+            title={totalOnDietMeals.toString()}
             description="refeições dentro da dieta"
             variant="success"
             disabled
@@ -48,7 +57,7 @@ export function Statistic() {
           />
 
           <CardStatistics
-            title="10"
+            title={totalOffDietMeals.toString()}
             description="refeições fora da dieta"
             variant="danger"
             disabled
