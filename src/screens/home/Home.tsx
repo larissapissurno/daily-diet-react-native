@@ -23,36 +23,10 @@ import {
 
 type Home = ViewProps & {};
 
-const MEALS_DATA = [
-  {
-    title: "20.08.23",
-    data: [
-      { time: "20:00", description: "Lasagna", hasEscapedDiet: true },
-      { time: "17:00", description: "Pão com café", hasEscapedDiet: false },
-      { time: "14:00", description: "Lasagna e Arroz", hasEscapedDiet: false },
-      { time: "08:00", description: "Café", hasEscapedDiet: false },
-      { time: "08:00", description: "Café", hasEscapedDiet: false },
-      { time: "08:00", description: "Café", hasEscapedDiet: false },
-      { time: "08:00", description: "Café", hasEscapedDiet: false },
-    ],
-  },
-  {
-    title: "19.08.23",
-    data: [
-      { time: "20:00", description: "Lasagna", hasEscapedDiet: true },
-      { time: "17:00", description: "Pão com café", hasEscapedDiet: false },
-      { time: "14:00", description: "Lasagna e Arroz", hasEscapedDiet: false },
-      { time: "08:00", description: "Café", hasEscapedDiet: false },
-      { time: "08:00", description: "Café", hasEscapedDiet: false },
-      { time: "08:00", description: "Café", hasEscapedDiet: false },
-      { time: "08:00", description: "Café", hasEscapedDiet: false },
-    ],
-  },
-];
-
 export function Home(props: Home) {
   const theme = useTheme();
   const mealsStore = useMealsContext();
+  const { onDietMealsPercentage } = mealsStore.stats();
 
   console.log("mealsStore", mealsStore.formattedMeals);
 
@@ -75,7 +49,7 @@ export function Home(props: Home) {
       </Header>
 
       <CardStatistics
-        title="90,98%"
+        title={onDietMealsPercentage.toFixed(2) + "%"}
         description="das refeições dentro da dieta"
         variant="success"
         showDetailsIcon

@@ -27,10 +27,17 @@ export type MealsListItemResponse = {
   onDiet: boolean;
 };
 
+type MealsStats = {
+  totalMeals: number;
+  totalOnDietMeals: number;
+  onDietMealsPercentage: number;
+};
+
 type MealsContextProps = {
   meals: Meal[];
   formattedMeals: SectionListData<MealsListItemResponse>[];
   addMeal: (meal: Omit<Meal, "id">) => void;
+  stats: () => MealsStats
 };
 
 const MealsContext = React.createContext({} as unknown as MealsContextProps);
@@ -102,7 +109,18 @@ export function MealsProvider({
     });
   }
 
-  const value: MealsContextProps = { meals, formattedMeals, addMeal };
+  function stats(): MealsStats {
+    const totalMeals = meals.length;
+    const totalOnDietMeals = meals.filter((meal) => meal.onDiet).length;
+
+    return {
+      totalMeals,
+      totalOnDietMeals,
+      onDietMealsPercentage: (totalOnDietMeals / totalMeals) * 100,
+    };
+  }
+
+  const value: MealsContextProps = { meals, formattedMeals, addMeal, stats };
 
   return (
     <MealsContext.Provider value={value}>{children}</MealsContext.Provider>
