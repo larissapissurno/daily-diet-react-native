@@ -10,6 +10,7 @@ import {
 import { Loading } from "@components/loading/Loading";
 import { Routes } from "@routes/Routes";
 import { Meal, MealsProvider } from "@contexts/Meals.context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ NunitoSans_400Regular, NunitoSans_700Bold });
@@ -23,7 +24,9 @@ export default function App() {
           translucent
         />
 
-        {fontsLoaded ? <Routes /> : <Loading />}
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          {fontsLoaded ? <Routes /> : <Loading />}
+        </GestureHandlerRootView>
       </MealsProvider>
     </ThemeProvider>
   );

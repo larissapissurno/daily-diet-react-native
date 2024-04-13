@@ -2,11 +2,11 @@ import { VariantProps } from "src/@types/styled";
 import styled, { css } from "styled-components/native";
 
 export const Container = styled.View`
+  background-color: ${({ theme }) => theme.COLORS.WHITE};
   width: 100%;
   height: 50px;
 
   padding: 14px 12px;
-  margin-bottom: 8px;
 
   flex-direction: row;
   align-items: center;
@@ -51,4 +51,11 @@ export const Status = styled.View<VariantProps>`
       ? theme.COLORS.RED_MID
       : theme.COLORS.GREEN_MID};
   `}
+`;
+
+export const SwipeToDeleteContainer = styled.View`
+  ${({ theme }) => css`
+    flex: 1;
+    background-color: ${theme.COLORS.RED_DARK};
+  `};
 `;
