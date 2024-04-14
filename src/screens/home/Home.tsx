@@ -19,6 +19,7 @@ import {
   MealsListItemResponse,
   useMealsContext,
 } from "@contexts/Meals.context";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 
 type Home = ViewProps & {};
 
@@ -74,9 +75,11 @@ export function Home(props: Home) {
         keyExtractor={(item, index) => item.description + index}
         renderItem={({ item }) => <MealsListItem {...item} />}
         renderSectionHeader={({ section: { title } }) => (
-          <MealsListTitleContainer>
-            <MealsListTitle>{title}</MealsListTitle>
-          </MealsListTitleContainer>
+          <Animated.View entering={FadeIn} exiting={FadeOut}>
+            <MealsListTitleContainer>
+              <MealsListTitle>{title}</MealsListTitle>
+            </MealsListTitleContainer>
+          </Animated.View>
         )}
         style={{ marginTop: 24 }}
       />
