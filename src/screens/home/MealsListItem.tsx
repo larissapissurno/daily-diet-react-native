@@ -1,15 +1,11 @@
-import {
-  Animated,
-  TouchableOpacity,
-  View,
-  ViewProps,
-  Text,
-} from "react-native";
+import { Animated, ViewProps } from "react-native";
 import {
   Container,
   Description,
   Status,
   SwipeToDeleteContainer,
+  SwipeToDeleteContent,
+  SwipeToDeleteText,
   Time,
   TimeContainer,
 } from "./MealsListItem.styles";
@@ -37,13 +33,10 @@ export function MealsListItem({
     });
     return (
       <SwipeToDeleteContainer>
-        <View>
-          <Text>Are you sure?</Text>
-        </View>
         <Animated.View style={[{ opacity }]}>
-          <TouchableOpacity>
-            <Text>Delete</Text>
-          </TouchableOpacity>
+          <SwipeToDeleteContent>
+            <SwipeToDeleteText>Delete</SwipeToDeleteText>
+          </SwipeToDeleteContent>
         </Animated.View>
       </SwipeToDeleteContainer>
     );

@@ -57,5 +57,23 @@ export const SwipeToDeleteContainer = styled.View`
   ${({ theme }) => css`
     flex: 1;
     background-color: ${theme.COLORS.RED_DARK};
+    border-left-width: 5px;
+    border-left-color: ${theme.COLORS.WHITE};
   `};
+`;
+
+export const SwipeToDeleteContent = styled.TouchableOpacity`
+  height: 100%;
+  display: flex;
+  padding: 16px;
+  flex-direction: row;
+  justify-content: flex-end;
+`;
+
+export const SwipeToDeleteText = styled.Text`
+  ${({ theme }) => css`
+    font-size: ${theme.FONT_SIZE.SM}px;
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    color: ${theme.COLORS.WHITE};
+  `}
 `;

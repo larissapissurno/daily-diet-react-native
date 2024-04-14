@@ -1,4 +1,3 @@
-import { Plus } from "phosphor-react-native";
 import styled, { css } from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
 
