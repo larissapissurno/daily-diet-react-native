@@ -22,6 +22,7 @@ export type Meal = {
 };
 
 export type MealsListItemResponse = {
+  id: string;
   time: string;
   description: string;
   onDiet: boolean;
@@ -39,7 +40,8 @@ type MealsContextProps = {
   meals: Meal[];
   formattedMeals: SectionListData<MealsListItemResponse>[];
   addMeal: (meal: Omit<Meal, "id">) => void;
-  stats: () => MealsStats
+  removeMeal: (id: string) => void;
+  stats: () => MealsStats;
 };
 
 const MealsContext = React.createContext({} as unknown as MealsContextProps);
@@ -71,6 +73,7 @@ export function MealsProvider({
       });
 
       const mealItem = {
+        ...meal,
         time: mealTime.toLocaleTimeString(undefined, {
           hour: "2-digit",
           minute: "2-digit",
@@ -111,6 +114,14 @@ export function MealsProvider({
     });
   }
 
+  async function removeMeal(id: string) {
+    setMeals((state) => {
+      const newState = state.filter((meal) => meal.id !== id);
+      AsyncStorage.setItem(STORE_MEALS, JSON.stringify(newState));
+      return newState;
+    });
+  }
+
   function stats(): MealsStats {
     const totalMeals = meals.length;
     const totalOnDietMeals = meals.filter((meal) => meal.onDiet).length;
@@ -139,7 +150,13 @@ export function MealsProvider({
     };
   }
 
-  const value: MealsContextProps = { meals, formattedMeals, addMeal, stats };
+  const value: MealsContextProps = {
+    meals,
+    formattedMeals,
+    addMeal,
+    removeMeal,
+    stats,
+  };
 
   return (
     <MealsContext.Provider value={value}>{children}</MealsContext.Provider>

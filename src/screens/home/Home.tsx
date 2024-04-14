@@ -1,4 +1,4 @@
-import { SectionList, SectionListData, Text, ViewProps } from "react-native";
+import { SectionList, Text, ViewProps } from "react-native";
 import {
   Avatar,
   Container,
@@ -11,7 +11,6 @@ import logoImage from "@assets/logo.png";
 import avatarImage from "@assets/avatar.png";
 import { useTheme } from "styled-components/native";
 import { Button } from "@components/button/Button";
-import { useState } from "react";
 import { MealsListItem } from "./MealsListItem";
 import { CardStatistics } from "@components/card-statistics/CardStatistics";
 import { Plus } from "phosphor-react-native";

@@ -9,6 +9,7 @@ export default {
     RED_LIGHT: "#F4E6E7",
     RED_MID: "#F3BABD",
     RED_DARK: "#BF3B44",
+    RED_DARKER: "#9E2C33",
 
     GRAY_700: "#1B1D1E",
     GRAY_600: "#333638",

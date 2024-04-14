@@ -55,19 +55,40 @@ export const Status = styled.View<VariantProps>`
 
 export const SwipeToDeleteContainer = styled.View`
   ${({ theme }) => css`
+    flex-direction: row;
     flex: 1;
-    background-color: ${theme.COLORS.RED_DARK};
+    align-items: center;
+    background-color: ${theme.COLORS.GRAY_500};
     border-left-width: 5px;
     border-left-color: ${theme.COLORS.WHITE};
   `};
 `;
 
-export const SwipeToDeleteContent = styled.TouchableOpacity`
+export const SwipeToDeleteConfirmation = styled.View`
+  flex: 1;
+  background-color: ${({ theme }) => theme.COLORS.RED_DARKER};
   height: 100%;
+  justify-content: center;
+  align-items: flex-end;
+  padding-right: 16px;
+`;
+
+export const SwipeToDeleteConfirmationText = styled.Text`
+  ${({ theme }) => css`
+    font-size: ${theme.FONT_SIZE.SM}px;
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    color: ${theme.COLORS.WHITE};
+  `}
+`;
+
+export const SwipeToDeleteButton = styled.TouchableOpacity`
+  height: 100%;
+  width: 100px;
   display: flex;
   padding: 16px;
   flex-direction: row;
   justify-content: flex-end;
+  background-color: ${({ theme }) => theme.COLORS.RED_DARK};
 `;
 
 export const SwipeToDeleteText = styled.Text`
