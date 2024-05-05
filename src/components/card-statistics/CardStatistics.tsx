@@ -27,7 +27,7 @@ export function CardStatistics({
 }: CardStatisticsProps) {
   return (
     <Container variant={variant} {...rest}>
-      <Title>{title}</Title>
+      {title && <Title>{title}</Title>}
       <Description>{description}</Description>
       {showDetailsIcon && <IconOpen variant={variant} />}
       {showGoBackIcon && <IconGoBack variant={variant} />}

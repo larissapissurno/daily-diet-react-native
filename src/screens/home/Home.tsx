@@ -19,7 +19,7 @@ import {
   MealsListItemResponse,
   useMealsContext,
 } from "@contexts/Meals.context";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 
 type Home = ViewProps & {};
 
@@ -34,11 +34,31 @@ export function Home(props: Home) {
   const navigation = useNavigation();
   const scrollRef = useRef(null);
 
+  const statisticSubtitle = useMemo(() => {
+    if (mealsStore.formattedMeals.length === 0) {
+      return "Cadastre suas refeições para começar a acompanhar acompanhar seu progresso!";
+    }
+
+    return "das refeições dentro da dieta";
+  }, [mealsStore.formattedMeals]);
+
+  const statisticTitle = useMemo(() => {
+    if (mealsStore.formattedMeals.length === 0) {
+      return "";
+    }
+
+    return onDietMealsPercentage.toFixed(2) + "%";
+  }, [mealsStore.formattedMeals]);
+
   function handleNewMeal() {
     navigation.navigate("new");
   }
 
   function handleGoToStatistic() {
+    if (mealsStore.formattedMeals.length === 0) {
+      return;
+    }
+
     navigation.navigate("statistic");
   }
 
@@ -56,10 +76,10 @@ export function Home(props: Home) {
       </Header>
 
       <CardStatistics
-        title={onDietMealsPercentage.toFixed(2) + "%"}
-        description="das refeições dentro da dieta"
+        title={statisticTitle}
+        description={statisticSubtitle}
         variant="success"
-        showDetailsIcon
+        showDetailsIcon={mealsStore.formattedMeals.length > 0}
         onPress={handleGoToStatistic}
       />
 
