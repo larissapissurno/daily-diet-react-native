@@ -19,18 +19,20 @@ import {
   MealsListItemResponse,
   useMealsContext,
 } from "@contexts/Meals.context";
-import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
+import { useRef } from "react";
 
 type Home = ViewProps & {};
 
 export function Home(props: Home) {
   const theme = useTheme();
   const mealsStore = useMealsContext();
+
   const { onDietMealsPercentage } = mealsStore.stats();
 
   console.log("mealsStore", mealsStore.formattedMeals);
 
   const navigation = useNavigation();
+  const scrollRef = useRef(null);
 
   function handleNewMeal() {
     navigation.navigate("new");
@@ -38,6 +40,11 @@ export function Home(props: Home) {
 
   function handleGoToStatistic() {
     navigation.navigate("statistic");
+  }
+
+  function deleteMealHandler(taskId: string) {
+    // start the animation
+    mealsStore.removeMeal(taskId);
   }
 
   return (
@@ -71,15 +78,20 @@ export function Home(props: Home) {
       </Button>
 
       <SectionList<MealsListItemResponse>
+        ref={scrollRef}
         sections={mealsStore.formattedMeals}
         keyExtractor={(item, index) => item.description + index}
-        renderItem={({ item }) => <MealsListItem {...item} />}
+        renderItem={({ item }) => (
+          <MealsListItem
+            {...item}
+            onDismiss={(task) => deleteMealHandler(task.id)}
+            simultaneousHandlers={scrollRef}
+          />
+        )}
         renderSectionHeader={({ section: { title } }) => (
-          <Animated.View entering={FadeIn} exiting={FadeOut}>
-            <MealsListTitleContainer>
-              <MealsListTitle>{title}</MealsListTitle>
-            </MealsListTitleContainer>
-          </Animated.View>
+          <MealsListTitleContainer>
+            <MealsListTitle>{title}</MealsListTitle>
+          </MealsListTitleContainer>
         )}
         style={{ marginTop: 24 }}
       />

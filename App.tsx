@@ -16,18 +16,20 @@ export default function App() {
   const [fontsLoaded] = useFonts({ NunitoSans_400Regular, NunitoSans_700Bold });
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <MealsProvider>
-        <StatusBar
-          barStyle="dark-content"
-          backgroundColor="transparent"
-          translucent
-        />
+    <SafeAreaView style={{ flex: 1 }}>
+      <ThemeProvider theme={defaultTheme}>
+        <MealsProvider>
+          <StatusBar
+            barStyle="dark-content"
+            backgroundColor="transparent"
+            translucent
+          />
 
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          {fontsLoaded ? <Routes /> : <Loading />}
-        </GestureHandlerRootView>
-      </MealsProvider>
-    </ThemeProvider>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            {fontsLoaded ? <Routes /> : <Loading />}
+          </GestureHandlerRootView>
+        </MealsProvider>
+      </ThemeProvider>
+    </SafeAreaView>
   );
 }
