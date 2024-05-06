@@ -38,7 +38,7 @@ const LIST_ITEM_HEIGHT = 50;
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 // swipe to right = translateX.value > 0, swipe to left = translateX.value < 0
-const TRANSLATE_X_THRESHOLD = SCREEN_WIDTH * 0.5 * -1;
+const TRANSLATE_X_THRESHOLD = SCREEN_WIDTH * 0.3 * -1;
 
 export function MealsListItem({
   id,
