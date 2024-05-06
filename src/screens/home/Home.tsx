@@ -36,7 +36,7 @@ export function Home(props: Home) {
 
   const statisticSubtitle = useMemo(() => {
     if (mealsStore.formattedMeals.length === 0) {
-      return "Cadastre suas refeições para começar a acompanhar acompanhar seu progresso!";
+      return "Cadastre suas refeições para começar a acompanhar seu progresso!";
     }
 
     return "das refeições dentro da dieta";
