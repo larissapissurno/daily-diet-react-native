@@ -110,6 +110,7 @@ export function MealsListItem({
       <PanGestureHandler
         simultaneousHandlers={simultaneousHandlers}
         onGestureEvent={panGesture}
+        activeOffsetX={[0, 200]}
       >
         <Animated.View style={[rStyle]}>
           <Container>
