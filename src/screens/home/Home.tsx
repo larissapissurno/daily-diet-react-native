@@ -67,6 +67,11 @@ export function Home(props: Home) {
     mealsStore.removeMeal(taskId);
   }
 
+  function editMealHandler(mealId: string) {
+    const meal = mealsStore.getMealById(mealId);
+    // navigation.navigate("edit", { id: taskId });
+  }
+
   return (
     <Container>
       <Header>
@@ -104,6 +109,7 @@ export function Home(props: Home) {
         renderItem={({ item }) => (
           <MealsListItem
             {...item}
+            onPress={(id) => editMealHandler(id)}
             onDismiss={(task) => deleteMealHandler(task.id)}
             simultaneousHandlers={scrollRef}
           />

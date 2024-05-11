@@ -12,30 +12,30 @@ import {
   IconGoBack,
   Label,
   DateTimeInput,
-} from "./NewMeal.styles";
+} from "./Meal.styles";
 import { Button } from "@components/button/Button";
 import { useNavigation } from "@react-navigation/native";
 
 import { z } from "zod";
-import { newMealFormSchema } from "./NewMeal.validations";
+import { mealFormSchema } from "./Meal.validations";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormHelper } from "@components/input-text/InputText.styles";
 import { Variant } from "src/@types/styled";
-import { Meal, useMealsContext } from "@contexts/Meals.context";
+import { MealType, useMealsContext } from "@contexts/Meals.context";
 
-type NewMealFormSchema = z.infer<typeof newMealFormSchema>;
+type NewMealFormSchema = z.infer<typeof mealFormSchema>;
 
 type NewMealProps = {};
 
-export function NewMeal({}: NewMealProps) {
+export function Meal({}: NewMealProps) {
   const defaultDate = new Date();
 
   const navigation = useNavigation();
   const mealsStore = useMealsContext();
 
   const form = useForm<NewMealFormSchema>({
-    resolver: zodResolver(newMealFormSchema),
+    resolver: zodResolver(mealFormSchema),
     defaultValues: {
       name: "",
     },
@@ -48,7 +48,7 @@ export function NewMeal({}: NewMealProps) {
   function handleNewMeal(data: NewMealFormSchema) {
     console.log("form data: ", data);
 
-    mealsStore.addMeal(data as Omit<Meal, "id">);
+    mealsStore.addMeal(data as Omit<MealType, "id">);
 
     const feedbackVariant: Variant = data.onDiet ? "success" : "danger";
     navigation.navigate("feedback", { variant: feedbackVariant });

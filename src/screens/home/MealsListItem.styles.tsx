@@ -1,7 +1,7 @@
 import { VariantProps } from "src/@types/styled";
 import styled, { css } from "styled-components/native";
 
-export const Container = styled.View`
+export const Container = styled.Pressable`
   background-color: ${({ theme }) => theme.COLORS.WHITE};
   width: 100%;
   height: 50px;

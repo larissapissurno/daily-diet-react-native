@@ -12,7 +12,7 @@ import { SectionListData } from "react-native";
 
 export const STORE_MEALS = "@DailyDiet:meals";
 
-export type Meal = {
+export type MealType = {
   id: string;
   name: string;
   description?: string;
@@ -37,9 +37,10 @@ type MealsStats = {
 };
 
 type MealsContextProps = {
-  meals: Meal[];
+  meals: MealType[];
   formattedMeals: SectionListData<MealsListItemResponse>[];
-  addMeal: (meal: Omit<Meal, "id">) => void;
+  getMealById: (id: string) => MealType | undefined;
+  addMeal: (meal: Omit<MealType, "id">) => void;
   removeMeal: (id: string) => void;
   stats: () => MealsStats;
 };
@@ -53,7 +54,7 @@ export function useMealsContext(): MealsContextProps {
 export function MealsProvider({
   children,
 }: React.PropsWithChildren): ReactElement {
-  const [meals, setMeals] = useState<Meal[]>([]);
+  const [meals, setMeals] = useState<MealType[]>([]);
 
   useEffect(() => {
     AsyncStorage.getItem(STORE_MEALS).then((result) => {
@@ -101,7 +102,7 @@ export function MealsProvider({
     return formattedMeals;
   }, [meals]);
 
-  async function addMeal(meal: Omit<Meal, "id">) {
+  async function addMeal(meal: Omit<MealType, "id">) {
     const uuid = await uuidv4();
     const newMeal = {
       ...meal,
@@ -120,6 +121,10 @@ export function MealsProvider({
       AsyncStorage.setItem(STORE_MEALS, JSON.stringify(newState));
       return newState;
     });
+  }
+
+  function getMealById(id: string): MealType | undefined {
+    return meals.find((meal) => meal.id === id);
   }
 
   function stats(): MealsStats {
@@ -153,6 +158,7 @@ export function MealsProvider({
   const value: MealsContextProps = {
     meals,
     formattedMeals,
+    getMealById,
     addMeal,
     removeMeal,
     stats,

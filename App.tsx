@@ -9,7 +9,7 @@ import {
 } from "@expo-google-fonts/nunito-sans";
 import { Loading } from "@components/loading/Loading";
 import { Routes } from "@routes/Routes";
-import { Meal, MealsProvider } from "@contexts/Meals.context";
+import { MealType, MealsProvider } from "@contexts/Meals.context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {

@@ -32,6 +32,7 @@ type MealsListItemProps = Pick<PanGestureHandlerProps, "simultaneousHandlers"> &
   ViewProps &
   Task & {
     onDismiss: (task: Task) => void;
+    onPress: (taskId: string) => void;
   };
 
 const LIST_ITEM_HEIGHT = 50;
@@ -47,6 +48,7 @@ export function MealsListItem({
   onDiet,
   simultaneousHandlers,
   onDismiss,
+  onPress,
 }: MealsListItemProps) {
   const translateX = useSharedValue(0);
   const itemHeight = useSharedValue(LIST_ITEM_HEIGHT);
@@ -113,7 +115,7 @@ export function MealsListItem({
         activeOffsetX={[0, 200]}
       >
         <Animated.View style={[rStyle]}>
-          <Container>
+          <Container onPress={() => onPress(id)}>
             <TimeContainer>
               <Time>{time}</Time>
             </TimeContainer>
