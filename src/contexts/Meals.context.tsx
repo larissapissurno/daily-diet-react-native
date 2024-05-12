@@ -42,6 +42,7 @@ type MealsContextProps = {
   getMealById: (id: string) => MealType | undefined;
   addMeal: (meal: Omit<MealType, "id">) => void;
   removeMeal: (id: string) => void;
+  updateMeal: (meal: MealType) => void;
   stats: () => MealsStats;
 };
 
@@ -123,6 +124,17 @@ export function MealsProvider({
     });
   }
 
+  function updateMeal(meal: MealType) {
+    setMeals((state) => {
+      const mealIndex = state.findIndex((m) => m.id === meal.id);
+      const newState = [...state];
+      newState[mealIndex] = meal;
+
+      AsyncStorage.setItem(STORE_MEALS, JSON.stringify(newState));
+      return newState;
+    });
+  }
+
   function getMealById(id: string): MealType | undefined {
     return meals.find((meal) => meal.id === id);
   }
@@ -161,6 +173,7 @@ export function MealsProvider({
     getMealById,
     addMeal,
     removeMeal,
+    updateMeal,
     stats,
   };
 

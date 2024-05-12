@@ -36,6 +36,11 @@ export function Meal({}: NewMealProps) {
   const mealsStore = useMealsContext();
   const route = useRoute<MealRouteProp>();
 
+  const title =
+    route.params.action === "edit" ? "Editar Refeição" : "Nova Refeição";
+  const buttonLabel =
+    route.params.action === "edit" ? "Salvar" : "Cadastrar refeição";
+
   useEffect(() => {
     if (route.params.action === "edit") {
       const meal = mealsStore.getMealById(route.params.mealId);
@@ -61,21 +66,35 @@ export function Meal({}: NewMealProps) {
     navigation.goBack();
   }
 
-  function handleNewMeal(data: NewMealFormSchema) {
+  function handleSaveMeal(data: NewMealFormSchema) {
     console.log("form data: ", data);
 
+    switch (route.params.action) {
+      case "edit":
+        editMealHandler(data);
+        break;
+      case "create":
+        newMealHandler(data);
+        break;
+    }
+  }
+
+  function newMealHandler(data: NewMealFormSchema) {
     mealsStore.addMeal(data as Omit<MealType, "id">);
 
     const feedbackVariant: Variant = data.onDiet ? "success" : "danger";
     navigation.navigate("feedback", { variant: feedbackVariant });
   }
 
-  console.log("errors: ", form.formState.errors);
+  function editMealHandler(data: NewMealFormSchema) {
+    mealsStore.updateMeal({
+      id: route.params.mealId,
+      ...data,
+    } as MealType);
+    navigation.goBack();
+  }
 
-  const title =
-    route.params.action === "edit" ? "Editar Refeição" : "Nova Refeição";
-  const buttonLabel =
-    route.params.action === "edit" ? "Salvar" : "Cadastrar refeição";
+  console.log("errors: ", form.formState.errors);
 
   return (
     <Container>
@@ -183,7 +202,7 @@ export function Meal({}: NewMealProps) {
           )}
         </Form>
 
-        <Button onPress={form.handleSubmit(handleNewMeal)}>
+        <Button onPress={form.handleSubmit(handleSaveMeal)}>
           {buttonLabel}
         </Button>
       </ContentContainer>
