@@ -43,8 +43,8 @@ export function Meal({}: NewMealProps) {
       if (!!meal) {
         form.setValue("name", meal.name);
         form.setValue("description", meal.description);
-        // form.setValue("mealDate", meal.mealDate);
-        // form.setValue("mealTime", meal.mealTime);
+        form.setValue("mealDate", new Date(meal.mealDate));
+        form.setValue("mealTime", new Date(meal.mealTime));
         form.setValue("onDiet", meal.onDiet);
       }
     }
