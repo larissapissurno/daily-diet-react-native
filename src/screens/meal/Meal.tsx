@@ -72,10 +72,15 @@ export function Meal({}: NewMealProps) {
 
   console.log("errors: ", form.formState.errors);
 
+  const title =
+    route.params.action === "edit" ? "Editar Refeição" : "Nova Refeição";
+  const buttonLabel =
+    route.params.action === "edit" ? "Salvar" : "Cadastrar refeição";
+
   return (
     <Container>
       <Header>
-        <HeaderTitle>Nova Refeição</HeaderTitle>
+        <HeaderTitle>{title}</HeaderTitle>
 
         <ButtonGoBack onPress={handleGoBack}>
           <IconGoBack />
@@ -179,7 +184,7 @@ export function Meal({}: NewMealProps) {
         </Form>
 
         <Button onPress={form.handleSubmit(handleNewMeal)}>
-          Cadastrar refeição
+          {buttonLabel}
         </Button>
       </ContentContainer>
     </Container>
