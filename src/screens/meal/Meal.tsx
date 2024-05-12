@@ -165,8 +165,8 @@ export function Meal({}: NewMealProps) {
           <Controller
             control={form.control}
             name="onDiet"
-            render={({ field: { onChange } }) => (
-              <DietToggle onValueChange={onChange} />
+            render={({ field: { onChange, value } }) => (
+              <DietToggle dietEnabled={value} onValueChange={onChange} />
             )}
           />
 

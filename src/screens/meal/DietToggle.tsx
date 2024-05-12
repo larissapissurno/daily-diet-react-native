@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Container,
   Option,
@@ -10,11 +10,21 @@ import { ViewProps } from "react-native-svg/lib/typescript/fabric/utils";
 import { View } from "react-native";
 
 type DietToggleProps = ViewProps & {
+  dietEnabled: boolean;
   onValueChange: (value: boolean) => void;
 };
 
-export function DietToggle({ onValueChange, ...rest }: DietToggleProps) {
+export function DietToggle({
+  dietEnabled,
+  onValueChange,
+  ...rest
+}: DietToggleProps) {
   const [isActive, setIsActive] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    console.log("dietEnabled: ", dietEnabled);
+    setIsActive(!!dietEnabled);
+  }, [dietEnabled]);
 
   function handlePress(active: boolean) {
     setIsActive(active);
