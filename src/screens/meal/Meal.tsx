@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
 import { InputText } from "@components/input-text/InputText";
 import { ContentContainer, Row } from "@components/_shared.styles";
@@ -14,7 +14,7 @@ import {
   DateTimeInput,
 } from "./Meal.styles";
 import { Button } from "@components/button/Button";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { z } from "zod";
 import { mealFormSchema } from "./Meal.validations";
@@ -23,6 +23,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormHelper } from "@components/input-text/InputText.styles";
 import { Variant } from "src/@types/styled";
 import { MealType, useMealsContext } from "@contexts/Meals.context";
+import { MealRouteProp } from "src/@types/navigation";
 
 type NewMealFormSchema = z.infer<typeof mealFormSchema>;
 
@@ -33,6 +34,21 @@ export function Meal({}: NewMealProps) {
 
   const navigation = useNavigation();
   const mealsStore = useMealsContext();
+  const route = useRoute<MealRouteProp>();
+
+  useEffect(() => {
+    if (route.params.action === "edit") {
+      const meal = mealsStore.getMealById(route.params.mealId);
+      console.log("meal: ", meal);
+      if (!!meal) {
+        form.setValue("name", meal.name);
+        form.setValue("description", meal.description);
+        // form.setValue("mealDate", meal.mealDate);
+        // form.setValue("mealTime", meal.mealTime);
+        form.setValue("onDiet", meal.onDiet);
+      }
+    }
+  }, [route.params.action]);
 
   const form = useForm<NewMealFormSchema>({
     resolver: zodResolver(mealFormSchema),

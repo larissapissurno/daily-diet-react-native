@@ -51,7 +51,7 @@ export function Home(props: Home) {
   }, [mealsStore.formattedMeals]);
 
   function handleNewMeal() {
-    navigation.navigate("new");
+    navigation.navigate("meal", { action: "create" });
   }
 
   function handleGoToStatistic() {
@@ -68,8 +68,7 @@ export function Home(props: Home) {
   }
 
   function editMealHandler(mealId: string) {
-    const meal = mealsStore.getMealById(mealId);
-    // navigation.navigate("edit", { id: taskId });
+    navigation.navigate("meal", { action: "edit", mealId: mealId });
   }
 
   return (
