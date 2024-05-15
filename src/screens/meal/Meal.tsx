@@ -59,6 +59,7 @@ export function Meal({}: NewMealProps) {
     resolver: zodResolver(mealFormSchema),
     defaultValues: {
       name: "",
+      onDiet: true,
     },
   });
 

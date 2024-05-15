@@ -19,7 +19,7 @@ export function DietToggle({
   onValueChange,
   ...rest
 }: DietToggleProps) {
-  const [isActive, setIsActive] = useState<boolean | null>(null);
+  const [isActive, setIsActive] = useState<boolean | null>(true);
 
   useEffect(() => {
     console.log("dietEnabled: ", dietEnabled);

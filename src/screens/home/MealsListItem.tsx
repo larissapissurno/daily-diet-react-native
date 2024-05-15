@@ -115,7 +115,7 @@ export function MealsListItem({
         activeOffsetX={[0, 200]}
       >
         <Animated.View style={[rStyle]}>
-          <Container onPress={() => onPress(id)}>
+          <Container onLongPress={() => onPress(id)}>
             <TimeContainer>
               <Time>{time}</Time>
             </TimeContainer>

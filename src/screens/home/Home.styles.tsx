@@ -9,7 +9,6 @@ export const Container = styled.View`
 `;
 
 export const Header = styled.View`
-  margin-top: 50px;
   flex-direction: row;
   justify-content: space-between;
 `;
