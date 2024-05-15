@@ -1,7 +1,9 @@
-import { Dimensions, ViewProps, StyleSheet } from "react-native";
+import { Dimensions, ViewProps } from "react-native";
 import {
-  Container,
+  MealContentContainer,
   Description,
+  SwipeToDeleteContainer,
+  ListItemContainer,
   Status,
   Time,
   TimeContainer,
@@ -19,7 +21,6 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { TrashSimple } from "phosphor-react-native";
-import { useTheme, DefaultTheme } from "styled-components";
 
 type Task = {
   id: string;
@@ -54,8 +55,6 @@ export function MealsListItem({
   const itemHeight = useSharedValue(LIST_ITEM_HEIGHT);
   const marginVertical = useSharedValue(10);
   const opacity = useSharedValue(1);
-  const theme = useTheme();
-  const styles = stylesFn(theme);
 
   const panGesture = useAnimatedGestureHandler<PanGestureHandlerGestureEvent>({
     onActive: (event) => {
@@ -82,21 +81,7 @@ export function MealsListItem({
     },
   });
 
-  const rStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateX: translateX.value }],
-    };
-  });
-
-  const rIconContainerStyle = useAnimatedStyle(() => {
-    const shouldBeDismissed =
-      translateX.value < 0 && translateX.value < TRANSLATE_X_THRESHOLD;
-
-    const opacity = withTiming(shouldBeDismissed ? 1 : 0.8);
-    return { opacity };
-  });
-
-  const rTaskContainerStyle = useAnimatedStyle(() => {
+  const reanimatedListItemContainer = useAnimatedStyle(() => {
     return {
       height: itemHeight.value,
       marginVertical: marginVertical.value,
@@ -104,65 +89,40 @@ export function MealsListItem({
     };
   });
 
+  const reanimatedSwipeToDeleteContainer = useAnimatedStyle(() => {
+    const shouldBeDismissed =
+      translateX.value < 0 && translateX.value < TRANSLATE_X_THRESHOLD;
+
+    const opacity = withTiming(shouldBeDismissed ? 1 : 0.8);
+    return { opacity };
+  });
+
+  const reanimatedMealContainer = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateX: translateX.value }],
+    };
+  });
+
   return (
-    <Animated.View style={[styles.taskContainer, rTaskContainerStyle]}>
-      <Animated.View style={[styles.iconContainer, rIconContainerStyle]}>
+    <ListItemContainer style={reanimatedListItemContainer}>
+      <SwipeToDeleteContainer style={reanimatedSwipeToDeleteContainer}>
         <TrashSimple size={20} color={"white"} weight="bold" />
-      </Animated.View>
+      </SwipeToDeleteContainer>
       <PanGestureHandler
         simultaneousHandlers={simultaneousHandlers}
         onGestureEvent={panGesture}
         activeOffsetX={[0, 200]}
       >
-        <Animated.View style={[rStyle]}>
-          <Container onLongPress={() => onPress(id)}>
+        <Animated.View style={[reanimatedMealContainer]}>
+          <MealContentContainer onLongPress={() => onPress(id)}>
             <TimeContainer>
               <Time>{time}</Time>
             </TimeContainer>
             <Description>{description}</Description>
             <Status variant={onDiet ? "success" : "danger"} />
-          </Container>
+          </MealContentContainer>
         </Animated.View>
       </PanGestureHandler>
-    </Animated.View>
+    </ListItemContainer>
   );
 }
-
-const stylesFn = (theme: DefaultTheme) =>
-  StyleSheet.create({
-    taskContainer: {
-      width: "100%",
-      alignItems: "center",
-    },
-    task: {
-      width: "100%",
-      height: LIST_ITEM_HEIGHT,
-      justifyContent: "center",
-      paddingLeft: 20,
-      backgroundColor: "white",
-      borderRadius: 10,
-      // Shadow for iOS
-      shadowOpacity: 0.08,
-      shadowOffset: {
-        width: 0,
-        height: 20,
-      },
-      shadowRadius: 10,
-      // Shadow for Android
-      elevation: 5,
-    },
-    taskTitle: {
-      fontSize: 16,
-    },
-    iconContainer: {
-      width: "100%",
-      height: "100%",
-      maxHeight: LIST_ITEM_HEIGHT,
-      position: "absolute",
-      justifyContent: "center",
-      alignItems: "flex-end",
-      backgroundColor: theme.COLORS.RED_DARKER,
-      borderRadius: 6,
-      paddingRight: 16,
-    },
-  });

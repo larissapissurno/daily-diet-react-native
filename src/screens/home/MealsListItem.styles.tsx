@@ -1,7 +1,25 @@
 import { VariantProps } from "src/@types/styled";
 import styled, { css } from "styled-components/native";
+import Animated from "react-native-reanimated";
 
-export const Container = styled.Pressable`
+export const ListItemContainer = styled(Animated.View)`
+  width: 100%;
+  align-items: center;
+`;
+
+export const SwipeToDeleteContainer = styled(Animated.View)`
+  width: 100%;
+  height: 100%;
+  max-height: 50px;
+  position: absolute;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: ${({ theme }) => theme.COLORS.RED_DARKER};
+  border-radius: 6px;
+  padding-right: 16px;
+`;
+
+export const MealContentContainer = styled.Pressable`
   background-color: ${({ theme }) => theme.COLORS.WHITE};
   width: 100%;
   height: 50px;
@@ -50,51 +68,5 @@ export const Status = styled.View<VariantProps>`
     background-color: ${variant === "danger"
       ? theme.COLORS.RED_MID
       : theme.COLORS.GREEN_MID};
-  `}
-`;
-
-export const SwipeToDeleteContainer = styled.View`
-  ${({ theme }) => css`
-    flex-direction: row;
-    flex: 1;
-    align-items: center;
-    background-color: ${theme.COLORS.GRAY_500};
-    border-left-width: 5px;
-    border-left-color: ${theme.COLORS.WHITE};
-  `};
-`;
-
-export const SwipeToDeleteConfirmation = styled.View`
-  flex: 1;
-  background-color: ${({ theme }) => theme.COLORS.RED_DARKER};
-  height: 100%;
-  justify-content: center;
-  align-items: flex-end;
-  padding-right: 16px;
-`;
-
-export const SwipeToDeleteConfirmationText = styled.Text`
-  ${({ theme }) => css`
-    font-size: ${theme.FONT_SIZE.SM}px;
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    color: ${theme.COLORS.WHITE};
-  `}
-`;
-
-export const SwipeToDeleteButton = styled.TouchableOpacity`
-  height: 100%;
-  width: 100px;
-  display: flex;
-  padding: 16px;
-  flex-direction: row;
-  justify-content: flex-end;
-  background-color: ${({ theme }) => theme.COLORS.RED_DARK};
-`;
-
-export const SwipeToDeleteText = styled.Text`
-  ${({ theme }) => css`
-    font-size: ${theme.FONT_SIZE.SM}px;
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    color: ${theme.COLORS.WHITE};
   `}
 `;
